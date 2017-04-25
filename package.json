@@ -1,0 +1,45 @@
+{
+  "author": {
+    "name": "Ciro César Martins Spaciari Jr"
+  },
+  "contributors": [
+    {
+      "name": "Ciro César Martins Spaciari Jr",
+      "email": "ciro.spaciari@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "name": "jscomet.core",
+  "version": "1.0.0",
+  "keywords": [
+    "private",
+    "project",
+    "oop",
+    "oo",
+    "es2015",
+    "es2016",
+    "es7",
+    "6to5",
+    "jscomet",
+    "classes",
+    "es6",
+    "modules",
+    "var",
+    "compiler",
+    "library",
+    "generators",
+    "transform",
+	"mvc",
+	"mobile",
+	"desktops"
+  ],
+  "description": "Contain features MVC for web, Desktop and Mobile Apps to use with JSComet.",
+  "main": "./jscomet.core/bin/jscomet.core.js",
+  "devDependencies": {
+    "jscomet": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cirospaciari/jscomet.core.git"
+  }
+}
