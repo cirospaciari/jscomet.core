@@ -114,6 +114,9 @@ return z____return;}
 if(arguments.length == 1){
   var  z____return = (function view(model){
         
+              if(typeof model == "string"){
+                return this.view(model, null);    
+            }
 			return this.view(null, model);
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 return z____return;}
@@ -125,7 +128,7 @@ if((viewName != null) &&(typeof viewName != 'string'))
  throw "Controller#view - the parameter 'viewName' must be 'string'";
 
         
-			return { 
+			return {
 				isView: true,
 				viewName: viewName,
 				model: model
@@ -136,8 +139,8 @@ throw 'Controller#view - No overload function takes '+arguments.length+' argumen
 ___self___.stream =  (function stream(stream){
   var  z____return = (function stream(stream){
         
-			return { 
-				result: stream, 
+			return {
+				result: stream,
 				isStream: true
 			};
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
@@ -147,7 +150,7 @@ ___self___.buffer =  (function buffer(buffer,  status,  contentType){
         
 			status = status || 200;
 			contentType = contentType || 'application/octet-stream';
-			return { 
+			return {
 				result: buffer,
 				status: status,
 				contentType: contentType
@@ -162,8 +165,8 @@ if((path != null) &&(typeof path != 'string'))
  throw "Controller#file - the parameter 'path' must be 'string'";
 
         
-			return { 
-				result: path, 
+			return {
+				result: path,
 				isFile: true
 			};
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
@@ -179,8 +182,8 @@ if((filename != null) &&(typeof filename != 'string'))
  throw "Controller#file - the parameter 'filename' must be 'string'";
 
         
-			return { 
-				result: path, 
+			return {
+				result: path,
 				filename: filename,
 				isFile: true
 			};
@@ -191,9 +194,9 @@ ___self___.redirect =  (function redirect(url,  status){
   var  z____return = (function redirect(url, status){
         
 			status = status || 302;
-			return { 
+			return {
 				contentType: "redirect",
-				result: url, 
+				result: url,
 				status: status
 			};
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
@@ -202,10 +205,10 @@ ___self___.json =  (function json(object,  status){
   var  z____return = (function json(object, status){
         
 			status = status || 200;
-			return { 
-				result: JSON.stringify(object), 
-				status: status, 
-				contentType: 'application/json'  
+			return {
+				result: JSON.stringify(object),
+				status: status,
+				contentType: 'application/json'
 			};
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 return z____return;});
@@ -213,9 +216,9 @@ ___self___.text =  (function text(result,  status){
   var  z____return = (function text(result, status){
         
 			status = status || 200;
-			return { 
-				result: result, 
-				status: status, 
+			return {
+				result: result,
+				status: status,
 				contentType: 'text/plain'
 			};
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
@@ -224,7 +227,7 @@ ___self___.error =  (function error(result,  status){
   var  z____return = (function error(result, status){
         
 			status = status || 500;
-			
+
 			return {
 				result: result,
 				status: status,
@@ -237,9 +240,9 @@ ___self___.html =  (function html(result,  status,  contentType){
         
 			status = status || 200;
 			contentType = contentType || 'text/html';
-			return { 
-				result: result, 
-				status: status, 
+			return {
+				result: result,
+				status: status,
 				contentType: contentType
 			};
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
@@ -249,7 +252,9 @@ ___self___.render =  (function render(){if(arguments.length == 1){
         
 			if(!this.viewEngine)
 				return null;
-			
+            if(typeof model == "string"){
+                return this.viewEngine.render(model, null);    
+            }
 			return this.viewEngine.render(model);
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 
@@ -267,7 +272,7 @@ if((viewName != null) &&(typeof viewName != 'string'))
         
 			if(!this.viewRenderer)
 				return null;
-			
+
 			return this.viewRenderer.render(viewName, model);
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 
@@ -282,7 +287,9 @@ ___self___.partial =  (function partial(){if(arguments.length == 1){
         
 			if(!this.viewRenderer)
 				return null;
-			
+            if(typeof model == "string"){
+                return this.viewEngine.partial(model, null);    
+            }
 			return this.viewRenderer.partial(model);
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 
@@ -300,7 +307,7 @@ if((viewName != null) &&(typeof viewName != 'string'))
         
 			if(!this.viewRenderer)
 				return null;
-			
+
 			return this.viewRenderer.partial(viewName, model);
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 
@@ -335,13 +342,13 @@ return z____return;});
 ___self___.onActionExecuting =  (function onActionExecuting(args){
   var  z____return = (function onActionExecuting(args){
         
-			
+
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 return z____return;});
 ___self___.onActionExecuted =  (function onActionExecuted(args){
   var  z____return = (function onActionExecuted(args){
         
-			
+
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 return z____return;});
 		};___defineAllProperties___.call(___self___);
@@ -526,6 +533,9 @@ if(value !== null && !(value instanceof ViewEngine))
 ___self___.render =  (function render(){if(arguments.length == 1){
   var  z____return = (function render(model){
         
+            if(typeof model == "string"){
+                return this.render(model, null);    
+            }
 			return this.render(null, model);
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 
@@ -543,7 +553,7 @@ if((viewName != null) &&(typeof viewName != 'string'))
         
 			this.viewBag = this.controller.viewBag || {};
 			var body = this.partial(viewName, model);
-			
+
 			var layoutName = controller.layout + ".html";
 			var layoutDir =  path.join(this.directory, "/views/" + (this.controllerName || "").toLowerCase() + "/" + layoutName);
 			if(!fs.existsSync(layoutDir)){
@@ -557,7 +567,7 @@ if((viewName != null) &&(typeof viewName != 'string'))
 				html = this.viewEngine.compile(layoutDir, controller.title, body, this);
 			else
 				html = body;
-			
+
 			return html;
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 return z____return;}
@@ -565,6 +575,9 @@ throw 'ViewRenderer#render - No overload function takes '+arguments.length+' arg
 ___self___.partial =  (function partial(){if(arguments.length == 1){
   var  z____return = (function partial(model){
         
+            if(typeof model == "string"){
+                return this.partial(model, null);    
+            }
 			return this.partial(null, model);
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 
@@ -579,7 +592,8 @@ if(arguments.length == 2){
 if((viewName != null) &&(typeof viewName != 'string'))
  throw "ViewRenderer#partial - the parameter 'viewName' must be 'string'";
 
-        
+            
+            
 			this.viewBag = this.controller.viewBag || {};
 			var viewName = (viewName || this.actionName) + ".html";
 			var viewDir = path.join(this.directory, "/views/" + (this.controllerName || "").toLowerCase() + "/" + viewName);
@@ -589,7 +603,7 @@ if((viewName != null) &&(typeof viewName != 'string'))
 					throw viewName + " not found.";
 				}
 			}
-			
+
 			return this.viewEngine.compile(viewDir, model, this);
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 
@@ -622,7 +636,7 @@ if((directory != null) &&(typeof directory != 'string'))
  throw "ViewRenderer#constructor - the parameter 'directory' must be 'string'";
 
         
-						
+
 			this.controller = controller;
 			this.controllerName = controllerName;
 			this.actionName = actionName;
@@ -640,7 +654,7 @@ return ViewRenderer;
 
 JSCometWeb.ViewRenderer = ViewRenderer;
 
-	
+
 	var ViewEngine = (function(){
 "use strict";
 
@@ -666,7 +680,7 @@ if((fileName != null) &&(typeof fileName != 'string'))
  throw "ViewEngine#compile - the parameter 'fileName' must be 'string'";
 
         
-			throw "Not implemented";	
+			throw "Not implemented";
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 
 
@@ -978,7 +992,7 @@ if((typeof value != 'number') ||
 				case "homologation":
 				case "production":
 					if(typeof ___privateStatic___.values[key] != "undefined")
-					   throw new TypeError("Cannot instantiate Enum");	
+					   throw new TypeError("Cannot instantiate Enum");
 					break;
 				default:
 					throw new TypeError("Cannot instantiate Enum");
@@ -1092,6 +1106,7 @@ function MVCRouteEngine(appDirectory, viewEngine){
 		var ___defineAllProperties___ = function(){
 
 		___private___.allRoutes =  {};
+		___private___.routeCache =  {};
 ___self___.route =  (function route(route){
   var  z____return = (function route(route){
 
@@ -1112,8 +1127,8 @@ if((fileName != null) &&(typeof fileName != 'string'))
 
         
 			var loadedRoutes = {}
-			
-			
+
+
 			if(require.main){
 				loadedRoutes = require.main.require(fileName);
 			
@@ -1126,7 +1141,7 @@ if((fileName != null) &&(typeof fileName != 'string'))
 			else{
 				loadedRoutes = require(fileName);
 			}
-			
+
 			for(var i in loadedRoutes){
 				loadedRoutes[i].name = i;
 			 ___private___.allRoutes[i] = loadedRoutes[i];
@@ -1136,20 +1151,20 @@ return z____return;});
 ___self___.error =  (function error(error,  request,  response){
   var  z____return = (function error(error, request, response){
         
-			
+
 			error = {
 				status: error.status || 500,
 				message: error.message || error,
 				error: (Environment.fromKey(process.env.NODE_ENV) === Environment.development) ? error : []
 			};
-			
+
 			var directory = this.appDirectory;
 			var errorDir =  path.join(directory, "/views/errors/"+(error.status)+".html");
 			if(!fs.existsSync(errorDir)){
 				errorDir = path.join(directory, "/views/errors/500.html");
 			}
 			var html = this.viewEngine.compile(errorDir, error);
-			 
+
 			response.header('Content-Type', 'text/html');
 			response.status(error.status);
 			response.send(html);
@@ -1170,38 +1185,38 @@ if(controller !== null && !(controller instanceof Controller))
         
 			 try{
 				
-				if(actionResult){ 
-					
+				if(actionResult){
+
 					if(typeof actionResult == "string"){
 						
 						response.header('Content-Type', 'text/html');
 						response.status = 200;
 						response.send(actionResult);
-						
-					}else if(actionResult.isView){	
+
+					}else if(actionResult.isView){
 						
 						var html = controller.render(actionResult.viewName, actionResult.model);
 
 						response.header('Content-Type', 'text/html');
 						response.status = 200;
 						response.send(html);
-						
+
 					}else if(actionResult.isStream){
 						
 						actionResult.result.pipe(response);
-						
+
 					}else if(actionResult.isFile){
 						
 						if(actionResult.filename)
 							response.download(actionResult.result, actionResult.filename);
 						else
 							response.download(actionResult.result);
-						
+
 					}else {
 						
 						if(actionResult.contentType == 'redirect'){
 							response.redirect(actionResult.status, actionResult.result);
-						}else{ 
+						}else{
 							
 							response.header('Content-Type', actionResult.contentType);
 							response.status(actionResult.status).send(actionResult.result);
@@ -1224,7 +1239,7 @@ if(parts !== null && !(parts instanceof Array))
 			var noEmptys = [];
 			if(!parts)
 				return parts;
-			
+
 			for(var i = 0; i < parts.length; i++){
 				if(parts[i] != null && parts[i] != undefined && parts[i] != ''){
 					noEmptys.push(parts[i]);
@@ -1241,71 +1256,78 @@ ___self___.match =  (function match(request,  response){
   var  z____return = (function match(request, response){
         
 			var method = request.method;
-			
+
 			var url = require('url');
 			var url_parts = url.parse(request.url, true);
 			var query = url_parts.query;
 			url = url_parts.pathname;
 			if(url.length > 1 && (url[url.length - 1] == "/" || url[url.length - 1] == "\\"))
 				url = url.substr(0, url.length - 1);
-			
-			var parts = url.split(/\\|\//);
-			parts = ___private___.removeEmpty(parts);
-			var result = null;
-			for(var i in ___private___.allRoutes){
-				var route = ___private___.allRoutes[i];
-				
-				var containsMethod = false;
-				
-				for(var j = 0; j < route.type.length; j++)
-				{
-					if(route.type[j] == method.toLowerCase())
-					{
-						containsMethod = true;
-						break;
-					}
-				}
-				var routeParts = ___private___.removeEmpty(route.url.split(/\\|\//));
 
-				if(!containsMethod || parts.length != routeParts.length)
-					continue;
-				
-				var parameters = {};
-				
-				parameters["controller"] = route.controller;
-				parameters["action"] = route.action;
-				var success = true;
-				
-				for(var j = 0; j < routeParts.length;j++){
-					var routePartValue  = routeParts[j].trim();
-					var partValue  = parts[j].trim();
-					
-					if(routePartValue.indexOf("{") == 0 && 
-					  (routePartValue.length > 1 && routePartValue[routePartValue.length-1] == "}" ) &&
-	     			   routePartValue != "{}"){
-						routePartValue = routePartValue.substr(1, routePartValue.length-2).trim();
-						parameters[routePartValue] = decodeURIComponent(partValue); 
-					}else if(routePartValue != partValue && routePartValue != "*"){
-						success = false;
-						break;
-					}
-				}
-				if(!success || !parameters["controller"] || !parameters["action"])
-					continue;
-				result = {};
-				result["controller"] = parameters["controller"];
-				result["action"] = parameters["action"];
-				result["parameters"] = [];
-				for(var j in parameters)
-					if(j != "controller" && j != "action")
-						result["parameters"].push(parameters[j]);
-				break;
-			}
+            var result = null;
+            if( ___private___.routeCache[url]){
+                result = ___private___.routeCache[url];
+            }else{
+                var parts = url.split(/\\|\//);
+                parts = ___private___.removeEmpty(parts);
+
+                for(var i in ___private___.allRoutes){
+                    var route = ___private___.allRoutes[i];
+
+                    var containsMethod = false;
+
+                    for(var j = 0; j < route.type.length; j++)
+                    {
+                        if(route.type[j] == method.toLowerCase())
+                        {
+                            containsMethod = true;
+                            break;
+                        }
+                    }
+                    var routeParts = ___private___.removeEmpty(route.url.split(/\\|\//));
+
+                    if(!containsMethod || parts.length != routeParts.length)
+                        continue;
+
+                    var parameters = {};
+
+                    parameters["controller"] = route.controller;
+                    parameters["action"] = route.action;
+                    var success = true;
+
+                    for(var j = 0; j < routeParts.length;j++){
+                        var routePartValue  = routeParts[j].trim();
+                        var partValue  = parts[j].trim();
+
+                        if(routePartValue.indexOf("{") == 0 &&
+                        (routePartValue.length > 1 && routePartValue[routePartValue.length-1] == "}" ) &&
+                        routePartValue != "{}"){
+                            routePartValue = routePartValue.substr(1, routePartValue.length-2).trim();
+                            parameters[routePartValue] = decodeURIComponent(partValue);
+                        }else if(routePartValue != partValue && routePartValue != "*"){
+                            success = false;
+                            break;
+                        }
+                    }
+                    if(!success || !parameters["controller"] || !parameters["action"])
+                        continue;
+                    result = {};
+                    result["controller"] = parameters["controller"];
+                    result["action"] = parameters["action"];
+                    result["parameters"] = [];
+                    for(var j in parameters)
+                        if(j != "controller" && j != "action")
+                            result["parameters"].push(parameters[j]);
+
+                    ___private___.routeCache[url] = result;
+                    break;
+                }
+            }
 			if(result){
 				var controllerName = result["controller"];
 				controllerName = (controllerName.charAt(0).toUpperCase() + controllerName.slice(1)) + "Controller";
 				var action = result["action"];
-				
+
 				var directory = this.appDirectory;
 				var controllerClass = null;
 				try{
@@ -1323,7 +1345,7 @@ ___self___.match =  (function match(request,  response){
 				}catch(ex){
 					if(typeof ex.code != "undefined" && ex.code == "MODULE_NOT_FOUND")
 						return false;
-					
+
 					this.error(ex, request, response);
 					return true;
 				}
@@ -1335,20 +1357,20 @@ ___self___.match =  (function match(request,  response){
 				controller.body = request.body || {};
 				controller.files = request.files;
 				controller.session = request.session || {};
-				
+
 				for(var j in parameters)
 					if(j != "controller" && j != "action")
 						controller.params[j] = parameters[j];
-					
+
 				for(var j in controller.body)
 					controller.params[j] = controller.body[j];
-				
+
 				controller.viewRenderer = new ViewRenderer(controller, result["controller"], result["action"], this.viewEngine, directory);
 				var actionResult = null;
 				try{
 					if(typeof controller[action] != "function")
 						return false;
-				
+
 					var toAsync = function(result){
 						if(result instanceof Promise){
 							return result;
@@ -1357,7 +1379,7 @@ ___self___.match =  (function match(request,  response){
 							resolve(result);
 						}).apply(_this,arguments)});})(this)));
 					}
-					
+
 					var executingResult = null;
 					if(typeof controller.onActionExecuting  == "function"){
 						executingResult = controller.onActionExecuting({actionName: action, controllerName: controllerName});
@@ -1381,7 +1403,7 @@ ___self___.match =  (function match(request,  response){
 						
 						.catch(((function(_this){ return (function(){return (function (error){
     return this.error(error, request, response);}).apply(_this,arguments)});})(this)));
-						
+
 					}).apply(_this,arguments)});})(this)))
 					.catch(((function(_this){ return (function(){return (function (error){
     return this.error(error, request, response);}).apply(_this,arguments)});})(this)));
@@ -1475,10 +1497,10 @@ ___self___.run =  (function run(){
 			var app = ___private___.app;
 			var directory = ___private___.appDirectory;
 			return new Promise(((function(_this){ return (function(){return (function (resolve){
-				
+
 				if(config.ssl){
 					try{
-						
+
 						var options = {
 						  key: fs.readFileSync(path.join(directory, config.ssl.key), "utf8"),
 						  cert: fs.readFileSync(path.join(directory, config.ssl.certificate), "utf8")
@@ -1496,14 +1518,14 @@ ___self___.run =  (function run(){
 						server = app.listen(config.port);
 					}else{
 						server = app.listen();
-					}	
+					}
 					server.on('listening', function() {
 						 resolve(server.address().port);
 					});
 				}
 			}).apply(_this,arguments)});})(this)));
-			
-			
+
+
 		}).apply(typeof ___self___ == 'undefined' ? this : ___self___, arguments);
 return z____return;});
 		};___defineAllProperties___.call(___self___);
@@ -1522,14 +1544,15 @@ if(routeEngine !== null && !(routeEngine instanceof RouteEngine))
 		 ___private___.config	 = config;
 			var directory = routeEngine.appDirectory;
 		 ___private___.appDirectory = directory;
+
 			app.use(session({
-					secret: config.session.secret, 
-					name : config.session.name, 
-					resave: true, 
+					secret: config.session.secret,
+					name : config.session.name,
+					resave: true,
 					saveUninitialized: true,
 					cookie: { maxAge: config.session.maxAge }
 			}));
-							
+
 			app.use(compression());
 			app.use(bodyParser.json());
 			app.use(bodyParser.urlencoded({ extended: false }));
@@ -1543,18 +1566,13 @@ if(routeEngine !== null && !(routeEngine instanceof RouteEngine))
 				if(!routeEngine.match(request, response))
 					next();
 			}).apply(_this,arguments)});})(this));
-			router.get("*", routeHandler);
-			router.post("*", routeHandler);
-			router.put("*",  routeHandler);
-			router['delete']("*", routeHandler);
-			router.patch("*", routeHandler);
-			router.head("*", routeHandler);
-			
+            router.use(routeHandler);
+
 			app.use("/", router);
-			
+
 			
 			app.use(((function(_this){ return (function(){return (function (request, response, next){
-			  var error = new Error('Not Found');
+			  var error = new Error('Not Found', request.originalUrl);
 			  error.status = 404;
 			  next(error);
 			}).apply(_this,arguments)});})(this)));
@@ -1580,9 +1598,9 @@ JSCometWeb.JSCometApp = JSCometApp;
 
 
 module.exports. JSCometApp = JSCometWeb.JSCometApp ;
-module.exports. Controller =  
+module.exports. Controller = 
 	JSCometWeb.Controller ;
-module.exports. MVCRouteEngine =  
+module.exports. MVCRouteEngine = 
 	JSCometWeb.MVCRouteEngine ;
 module.exports. BlissViewEngine = 
 	JSCometWeb.BlissViewEngine ;
@@ -1597,6 +1615,7 @@ module.exports. Environment =
 
 
 module.exports['default'] = JSCometWeb;
+
 
 
 

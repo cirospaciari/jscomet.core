@@ -9,7 +9,7 @@
 	],
 	"license" : "MIT",
 	"name" : "jscomet.core",
-	"version" : "1.0.8",
+	"version" : "1.1.0",
 	"keywords" : [
 		"private",
 		"project",
@@ -35,7 +35,7 @@
 	"description" : "Contain features MVC for web, Desktop and Mobile Apps to use with JSComet.",
 	"main" : "./jscomet.core/bin/jscomet.core.js",
 	"devDependencies" : {
-		"jscomet" : "^1.0.0"
+		"jscomet" : "^1.1.0"
 	},
 	"dependencies" : {
 		"bliss" : "^1.0.1",
